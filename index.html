@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lunea Shoes, tu estilo en un solo lugar.">
+  <title>Lunea Shoes | Tu estilo, en un solo lugar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <a href="#" class="logo" onclick="showPage('home')">
+    <span class="logo-icon">♛</span>
+    <span>Lunea <b>Shoes</b><small>Tu estilo, en un solo lugar</small></span>
+  </a>
+
+  <nav class="navigation">
+    <a href="#" onclick="showPage('home')">Inicio</a>
+    <a href="#catalogo" onclick="showPage('catalog')">Catálogo</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#privacidad">Privacidad</a>
+  </nav>
+
+  <button class="cart-button" onclick="showPage('cart')">
+    🛍️ Mi carrito <span id="cart-count">0</span>
+  </button>
+</header>
+
+<main>
+
+<!-- INICIO -->
+<section id="home" class="page active">
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">NUEVA COLECCIÓN 2026</span>
+      <h1>Camina con estilo.<br><span>Vive a tu manera.</span></h1>
+      <p>Encuentra los zapatos perfectos para cada ocasión. Tu estilo comienza aquí.</p>
+      <button class="primary-button" onclick="showPage('catalog')">
+        Explorar colección →
+      </button>
+      <div class="hero-features">
+        <span>✦ Calidad</span>
+        <span>✦ Estilo</span>
+        <span>✦ Comodidad</span>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900" alt="Calzado deportivo">
+      <div class="floating-card">✨ Encuentra tu estilo</div>
+    </div>
+  </section>
+
+  <section class="categories section" id="catalogo">
+    <div class="section-heading">
+      <span class="eyebrow">DESCUBRE LUNEA</span>
+      <h2>Compra por categoría</h2>
+      <p>Encuentra tu calzado ideal.</p>
+    </div>
+
+    <div class="category-grid">
+      <button class="category-card" onclick="selectUser('damas')">
+        <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd?w=600" alt="Zapatos para dama">
+        <span>Damas</span>
+      </button>
+      <button class="category-card" onclick="selectUser('caballeros')">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600" alt="Zapatos para caballero">
+        <span>Caballeros</span>
+      </button>
+      <button class="category-card" onclick="selectUser('ninas')">
+        <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=600" alt="Zapatos para niñas">
+        <span>Niñas</span>
+      </button>
+      <button class="category-card" onclick="selectUser('ninos')">
+        <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=600" alt="Zapatos para niños">
+        <span>Niños</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="promo section" id="nosotros">
+    <div>
+      <span class="eyebrow">LUNEA SHOES</span>
+      <h2>Tu personalidad,<br>tu propio camino.</h2>
+      <p>Somos una tienda dedicada a ofrecer calzado para todos los estilos y ocasiones.</p>
+      <button class="light-button" onclick="showPage('catalog')">Ver productos →</button>
+    </div>
+    <div class="promo-decoration">LUNEA<br>SHOES ♡</div>
+  </section>
+</section>
+
+<!-- CATÁLOGO -->
+<section id="catalog" class="page section">
+  <div class="section-heading">
+    <span class="eyebrow">NUESTROS PRODUCTOS</span>
+    <h1>Catálogo de calzado</h1>
+    <p>Selecciona tu categoría y encuentra tu modelo favorito.</p>
+  </div>
+
+  <div class="filters">
+    <select id="user-filter">
+      <option value="todos">Todos los usuarios</option>
+      <option value="damas">Damas</option>
+      <option value="caballeros">Caballeros</option>
+      <option value="ninas">Niñas</option>
+      <option value="ninos">Niños</option>
+    </select>
+
+    <select id="type-filter">
+      <option value="todos">Todos los estilos</option>
+      <option value="deportivos">Deportivos</option>
+      <option value="casuales">Casuales</option>
+      <option value="formales">Formales</option>
+    </select>
+
+    <input type="search" id="search-input" placeholder="Buscar zapatos...">
+  </div>
+
+  <div id="product-grid" class="product-grid"></div>
+</section>
+
+<!-- CARRITO -->
+<section id="cart" class="page section">
+  <div class="section-heading">
+    <span class="eyebrow">TU SELECCIÓN</span>
+    <h1>Carrito de compras</h1>
+    <p>Revisa tus productos antes de continuar.</p>
+  </div>
+
+  <div class="cart-layout">
+    <div id="cart-items" class="cart-items"></div>
+
+    <div class="summary-card">
+      <h3>Resumen de compra</h3>
+      <div class="summary-line"><span>Subtotal</span><b id="subtotal">$0.00</b></div>
+      <div class="summary-line"><span>Envío</span><b id="shipping">$99.00</b></div>
+      <div class="summary-line total"><span>Total</span><b id="total">$0.00</b></div>
+      <button class="primary-button full" onclick="goCheckout()">Continuar compra →</button>
+      <button class="text-button full" onclick="showPage('catalog')">Seguir comprando</button>
+    </div>
+  </div>
+</section>
+
+<!-- DATOS DE ENVÍO -->
+<section id="checkout" class="page section">
+  <div class="section-heading">
+    <span class="eyebrow">ÚLTIMO PASO</span>
+    <h1>Datos de envío</h1>
+    <p>Completa tus datos para preparar tu pedido.</p>
+  </div>
+
+  <div class="checkout-layout">
+    <form id="shipping-form" class="form-card">
+      <h3>Información del comprador</h3>
+
+      <label>Nombre completo</label>
+      <input name="name" type="text" required placeholder="Tu nombre">
+
+      <label>Correo electrónico</label>
+      <input name="email" type="email" required placeholder="correo@ejemplo.com">
+
+      <label>Teléfono</label>
+      <input name="phone" type="tel" required pattern="[0-9]{10}" placeholder="10 dígitos">
+
+      <h3>Dirección de entrega</h3>
+
+      <label>Calle y número</label>
+      <input name="street" required placeholder="Calle y número">
+
+      <label>Colonia</label>
+      <input name="neighborhood" required placeholder="Tu colonia">
+
+      <label>Ciudad</label>
+      <input name="city" required placeholder="Ciudad">
+
+      <label>Estado</label>
+      <input name="state" required placeholder="Estado">
+
+      <label>Código postal</label>
+      <input name="postal" required pattern="[0-9]{5}" placeholder="5 dígitos">
+
+      <button class="primary-button full" type="submit">Verificar datos →</button>
+    </form>
+
+    <div class="summary-card">
+      <h3>Tu pedido</h3>
+      <div id="checkout-items"></div>
+      <div class="summary-line total"><span>Total</span><b id="checkout-total">$0.00</b></div>
+      <p class="small-note">🚚 Entrega estimada: 1 a 2 semanas y media dentro de México.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PAGO -->
+<section id="payment" class="page section">
+  <div class="section-heading">
+    <span class="eyebrow">PAGO SEGURO</span>
+    <h1>Confirma tu compra</h1>
+    <p>Selecciona el método de pago.</p>
+  </div>
+
+  <div class="payment-card">
+    <div class="payment-total">
+      <span>Total a pagar</span>
+      <h2 id="payment-total">$0.00</h2>
+    </div>
+
+    <label class="payment-option">
+      <input type="radio" name="payment-method" value="Tarjeta" checked>
+      💳 Pago con tarjeta
+    </label>
+
+    <label class="payment-option">
+      <input type="radio" name="payment-method" value="Transferencia">
+      🏦 Transferencia bancaria
+    </label>
+
+    <p class="small-note">
+      Esta versión es una demostración académica. No se procesan pagos reales ni se solicitan datos bancarios.
+    </p>
+
+    <button class="primary-button full" id="pay-button" onclick="processPayment()">
+      Confirmar pago de demostración
+    </button>
+    <button class="text-button full" onclick="showPage('checkout')">Regresar</button>
+  </div>
+</section>
+
+<!-- CONFIRMACIÓN -->
+<section id="success" class="page section">
+  <div class="success-card">
+    <div class="success-icon">✓</div>
+    <span class="eyebrow">COMPRA EXITOSA</span>
+    <h1>¡Gracias por comprar en Lunea Shoes!</h1>
+    <p>Tu pedido ha sido registrado correctamente.</p>
+    <h3 id="order-number"></h3>
+    <div id="order-details"></div>
+    <p>📦 Tu pedido será preparado y enviado a tu domicilio.</p>
+    <button class="primary-button" onclick="showPage('home')">Volver al inicio</button>
+  </div>
+</section>
+
+<!-- PRIVACIDAD -->
+<section id="privacy" class="page section">
+  <div class="section-heading">
+    <span class="eyebrow">TRANSPARENCIA Y CONFIANZA</span>
+    <h1>Políticas de privacidad</h1>
+  </div>
+
+  <div class="privacy-card">
+    <h3>1. Datos que recopilamos</h3>
+    <p>Nombre, teléfono, correo electrónico y dirección de envío, necesarios para registrar y preparar tu compra.</p>
+
+    <h3>2. Uso de la información</h3>
+    <p>Utilizamos tus datos para procesar pedidos, brindar atención y mejorar tu experiencia de compra.</p>
+
+    <h3>3. Protección de datos</h3>
+    <p>La información debe manejarse con medidas de seguridad y no compartirse sin autorización, salvo los casos permitidos por la ley.</p>
+
+    <h3>4. Cookies</h3>
+    <p>Las cookies pueden utilizarse para mejorar la navegación de nuestro sitio.</p>
+
+    <h3>5. Derechos del usuario</h3>
+    <p>Puedes solicitar la actualización, corrección o eliminación de tus datos personales conforme a la legislación aplicable.</p>
+
+    <h3>6. Contacto</h3>
+    <p>Para dudas sobre privacidad, comunícate con el equipo de Lunea Shoes.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="logo footer-logo">♛ Lunea Shoes</div>
+  <p>Tu estilo, en un solo lugar. ♡</p>
+  <div class="footer-links">
+    <a href="#" onclick="showPage('privacy')">Políticas de privacidad</a>
+    <a href="#" onclick="showPage('catalog')">Catálogo</a>
+  </div>
+  <p class="copyright">© 2026 Lunea Shoes. Todos los derechos reservados.</p>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
